@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -48,8 +51,6 @@ class JobController extends Controller
 
     public function update(Job $job)
     {
-        // authorize (On hold...)
-
         request()->validate([
             'title' => ['required', 'min:3'],
             'salary' => ['required']
@@ -65,8 +66,6 @@ class JobController extends Controller
 
     public function destroy(Job $job)
     {
-        // authorize (On hold...)
-
         $job->delete();
 
         return redirect('/jobs');
